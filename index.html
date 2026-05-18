@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive 3D India State Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="map-stage" aria-labelledby="page-title">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Educational Geography Explorer</p>
+          <h1 id="page-title">3D Interactive India Map</h1>
+        </div>
+
+        <div class="actions" aria-label="Map controls">
+          <label class="search-box" for="stateSearch">
+            <span aria-hidden="true">Search</span>
+            <input id="stateSearch" type="search" placeholder="Find a state..." autocomplete="off" />
+          </label>
+          <button class="icon-btn" id="zoomIn" type="button" aria-label="Zoom in">+</button>
+          <button class="icon-btn" id="zoomOut" type="button" aria-label="Zoom out">-</button>
+          <button class="mode-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">Dark</button>
+        </div>
+      </header>
+
+      <div class="content-grid">
+        <section class="map-card" aria-label="Clickable map of Indian states">
+          <div class="map-toolbar">
+            <div class="legend">
+              <span class="legend-dot"></span>
+              <span>Indian standard map view - click any region</span>
+            </div>
+            <select id="filterSelect" aria-label="Filter states">
+              <option value="all">All states</option>
+              <option value="population">Higher population</option>
+              <option value="area">Larger area</option>
+              <option value="language-hindi">Hindi language</option>
+            </select>
+          </div>
+
+          <div class="map-viewport" id="mapViewport">
+            <div class="reference-map-frame" id="referenceMapFrame">
+              <img src="assets/india-mapchart-layout.png" alt="MapChart layout map of India" />
+              <div class="reference-overlay" id="referenceOverlay" aria-label="Clickable India map labels"></div>
+            </div>
+            <svg id="indiaMap" class="legacy-map" role="img" aria-label="Interactive map of India"></svg>
+            <div class="tooltip" id="tooltip" role="status"></div>
+            <div class="loading" id="loading">Loading India map...</div>
+          </div>
+
+          <div class="state-directory" aria-label="Select a state from list">
+            <div>
+              <p class="eyebrow">Quick Select</p>
+              <h2>State information</h2>
+            </div>
+            <div class="state-buttons" id="stateButtons"></div>
+          </div>
+        </section>
+
+        <aside class="info-panel" id="infoPanel" aria-live="polite">
+          <div class="empty-state" id="emptyState">
+            <p class="eyebrow">State Details</p>
+            <h2>Select a state</h2>
+            <p>Click any region on the map to view geography, culture, tourism, education, and transport information.</p>
+          </div>
+
+          <article class="state-report hidden" id="stateReport">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow" id="reportType">State Profile</p>
+                <h2 id="stateName">State Name</h2>
+              </div>
+              <span class="animal-chip" id="animalChip"></span>
+            </div>
+
+            <div class="quick-stats">
+              <div>
+                <span>Capital</span>
+                <strong id="capital"></strong>
+              </div>
+              <div>
+                <span>Area</span>
+                <strong id="area"></strong>
+              </div>
+              <div>
+                <span>Population</span>
+                <strong id="population"></strong>
+              </div>
+            </div>
+
+            <div class="section-list" id="sectionList"></div>
+          </article>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
